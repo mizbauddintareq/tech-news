@@ -96,8 +96,14 @@ const displayNews = (data, name) => {
                       <div class="col-md-9 col-7">
                         <p class="fw-bold text-secondary">${
                           news.author.name
+                            ? news.author.name
+                            : "<span class='text-danger'>Author name not found</span>"
                         }</p>
-                        <p>${news.author.published_date}</p>
+                        <p>${
+                          news.author.published_date
+                            ? news.author.published_date
+                            : "<span class='text-danger'>Published date not found</span>"
+                        }</p>
                       </div>
                     </div>
                   </div>
@@ -105,6 +111,8 @@ const displayNews = (data, name) => {
                     <i class="fa-regular fa-eye"></i>
                     <span class="text-secondary fw-bold">${
                       news.rating.number
+                        ? news.rating.number
+                        : "<span class='text-danger'>Rating not found</span>"
                     }M</span>
                   </div>
                   <div class="col-md-3 col-6">
@@ -120,6 +128,7 @@ const displayNews = (data, name) => {
                       class="btn btn-outline-info"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
+                      onclick="loadDetails('${news._id}')"
                     >
                       See details
                     </button>
@@ -133,5 +142,19 @@ const displayNews = (data, name) => {
     newsContainer.appendChild(div);
   });
 };
+
+const loadDetails = async (id) => {
+  try {
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/news/${id}`
+    );
+    const data = await res.json();
+    displayDetails(data.data[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const displayDetails = (details) => {};
 
 displayCategories();
