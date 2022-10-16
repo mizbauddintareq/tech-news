@@ -155,6 +155,63 @@ const loadDetails = async (id) => {
   }
 };
 
-const displayDetails = (details) => {};
+const displayDetails = (details) => {
+  const modalBody = document.getElementById("m-body");
+  const modalTitle = document.getElementById("exampleModalLabel");
+  modalTitle.innerText = details.title;
+  const div = document.createElement("div");
+  div.classList.add("card", "h-100");
+  div.innerHTML = `
+        <img src="${details.image_url}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">${details.details}</p>
+             <div
+                  class="row d-flex justify-content-between align-items-center mt-2"
+                >
+                  <div class="col-6">
+                    <div
+                      class="row d-flex justify-content-center align-items-center"
+                    >
+                      <div class="col-6">
+                        <img
+                          src="${details.author.img}"
+                          alt=""
+                          class="img-fluid rounded-circle"
+                        />
+                      </div>
+                      <div class="col-12">
+                        <p class="fw-bold text-secondary">${
+                          details.author.name
+                            ? details.author.name
+                            : "<span class='text-danger'>Author name not found</span>"
+                        }</p>
+                        <p>${
+                          details.author.published_date
+                            ? details.author.published_date
+                            : "<span class='text-danger'>Published date not found</span>"
+                        }</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <i class="fa-regular fa-eye"></i>
+                    <span class="text-secondary fw-bold">${
+                      details.rating.number
+                        ? details.rating.number
+                        : "<span class='text-danger'>Rating not found</span>"
+                    }M</span>
+                  </div>
+                  <div class="col-6">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                  </div>
+                </div>
+        </div>
+    `;
+  modalBody.appendChild(div);
+};
 
 displayCategories();
