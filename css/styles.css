@@ -1,0 +1,13 @@
+/* Utilities Css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+body {
+  font-family: "Poppins", sans-serif !important;
+}
+.card-shadow {
+  box-shadow: 5px 5px 10px #a9a9aa77, inset -5px -5px 10px #ffffff7e;
+  background: #f4fafd;
+  border-radius: 15px;
+}
+ul li {
+  cursor: pointer;
+}
