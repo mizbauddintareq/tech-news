@@ -12,6 +12,7 @@ const loadCategories = async () => {
 
 const displayCategories = async () => {
   const allCategories = await loadCategories();
+  allCategories.sort();
   allCategories.forEach((cat) => {
     const categoriesContainer = document.getElementById("categories-container");
 
@@ -36,6 +37,7 @@ const loadNews = async (id, name) => {
 };
 
 const displayNews = (data, name) => {
+  const sortedByView = data.sort((a, b) => b.total_view - a.total_view);
   const dataCount = document.getElementById("data-count");
   const newsContainer = document.getElementById("news-container");
   if (data.length === 0) {
@@ -58,7 +60,7 @@ const displayNews = (data, name) => {
   }
 
   newsContainer.innerHTML = "";
-  data.forEach((news) => {
+  sortedByView.forEach((news) => {
     const div = document.createElement("div");
     div.classList.add("card-shadow");
     div.innerHTML = `
@@ -110,10 +112,10 @@ const displayNews = (data, name) => {
                   <div class="col-md-2 col-6">
                     <i class="fa-regular fa-eye"></i>
                     <span class="text-secondary fw-bold">${
-                      news.rating.number
-                        ? news.rating.number
-                        : "<span class='text-danger'>Rating not found</span>"
-                    }M</span>
+                      news.total_view
+                        ? news.total_view
+                        : "<span class='text-danger'>0 Views</span>"
+                    }</span>
                   </div>
                   <div class="col-md-3 col-6">
                     <i class="fa-solid fa-star-half-stroke"></i>
@@ -196,10 +198,10 @@ const displayDetails = (details) => {
                   <div class="col-6">
                     <i class="fa-regular fa-eye"></i>
                     <span class="text-secondary fw-bold">${
-                      details.rating.number
-                        ? details.rating.number
-                        : "<span class='text-danger'>Rating not found</span>"
-                    }M</span>
+                      details.total_view
+                        ? details.total_view
+                        : "<span class='text-danger'>0 Views</span>"
+                    }</span>
                   </div>
                   <div class="col-6">
                     <i class="fa-solid fa-star-half-stroke"></i>
