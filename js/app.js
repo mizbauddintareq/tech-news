@@ -25,6 +25,7 @@ const displayCategories = async () => {
 };
 
 const loadNews = async (id, name) => {
+  toggleLoader(true);
   try {
     const res = await fetch(
       `https://openapi.programming-hero.com/api/news/category/0${id}`
@@ -142,6 +143,7 @@ const displayNews = (data, name) => {
         </div>
       `;
     newsContainer.appendChild(div);
+    toggleLoader(false);
   });
 };
 
@@ -159,6 +161,7 @@ const loadDetails = async (id) => {
 
 const displayDetails = (details) => {
   const modalBody = document.getElementById("m-body");
+  modalBody.innerHTML = ``;
   const modalTitle = document.getElementById("exampleModalLabel");
   modalTitle.innerText = details.title;
   const div = document.createElement("div");
@@ -214,6 +217,14 @@ const displayDetails = (details) => {
         </div>
     `;
   modalBody.appendChild(div);
+};
+
+const toggleLoader = (isLoading) => {
+  if (isLoading) {
+    document.getElementById("loader-spinner").classList.remove("d-none");
+  } else {
+    document.getElementById("loader-spinner").classList.add("d-none");
+  }
 };
 
 displayCategories();
