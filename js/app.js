@@ -19,18 +19,25 @@ const displayCategories = async () => {
 
     const li = document.createElement("li");
     li.innerHTML = `
-      <a class="nav-link" onclick="loadNews(${cat.category_id}, '${cat.category_name}')">${cat.category_name}</a>
+      <a id="${cat.category_id}" class="nav-link" onclick="loadNews('${cat.category_id}', '${cat.category_name}')">${cat.category_name}</a>
       `;
     categoriesContainer.appendChild(li);
   });
+  loadNews(allCategories[0]?.category_id, allCategories[0]?.category_name);
 };
 
 // Load News By Category Id
 const loadNews = async (id, name) => {
   toggleLoader(true);
   try {
+    const allActiveClass = document.getElementsByClassName("active-link");
+    for (const active of allActiveClass) {
+      active?.classList?.remove("active-link");
+    }
+    const menuId = document.getElementById(id);
+    menuId?.classList?.add("active-link");
     const res = await fetch(
-      `https://openapi.programming-hero.com/api/news/category/0${id}`
+      `https://openapi.programming-hero.com/api/news/category/${id}`
     );
     const data = await res.json();
     displayNews(data.data, name);
@@ -234,17 +241,22 @@ const toggleLoader = (isLoading) => {
 const blogSection = document.getElementById("blogs-section");
 const categoriesSection = document.getElementById("categories-section");
 const mainSection = document.getElementById("main-section");
+const homeMenu = document.getElementById("home-menu");
+const blogsMenu = document.getElementById("blog-menu");
 const displayBlogs = () => {
+  homeMenu.classList.remove("active-link-2");
+  blogsMenu.classList.add("active-link-2");
   blogSection.classList.remove("d-none");
   categoriesSection.classList.add("d-none");
   mainSection.classList.add("d-none");
 };
 
 const backToHome = () => {
+  homeMenu.classList.add("active-link-2");
+  blogsMenu.classList.remove("active-link-2");
   blogSection.classList.add("d-none");
   categoriesSection.classList.remove("d-none");
   mainSection.classList.remove("d-none");
 };
 
-loadNews("1", "Breaking News");
 displayCategories();

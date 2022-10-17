@@ -17,8 +17,12 @@ ul li {
 }
 
 .active-link {
-  color: #5d5fef;
-  text-decoration: underline;
+  color: #5d5fef !important;
+  text-decoration: underline !important;
+}
+.active-link-2 {
+  color: #5d5fef !important;
+  text-decoration: underline !important;
 }
 
 /* Button */
