@@ -1,16 +1,20 @@
 /* Utilities Css Starts*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 body {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Roboto", sans-serif !important;
 }
-.card-shadow {
+.logo h1 span {
+  color: white;
+  background-color: #5d5fef;
+}
+.menu ul li a {
+  font-weight: 400;
+}
+/* .card-shadow {
   box-shadow: 5px 5px 10px #a9a9aa77, inset -5px -5px 10px #ffffff7e;
   background: #f4fafd;
   border-radius: 15px;
-}
-ul li {
-  cursor: pointer;
-}
+} */
 /* Utilities Css Ends*/
 
 /* Loader Css */

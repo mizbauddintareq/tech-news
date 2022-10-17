@@ -12,7 +12,6 @@ const loadCategories = async () => {
 
 const displayCategories = async () => {
   const allCategories = await loadCategories();
-  allCategories.sort();
   allCategories.forEach((cat) => {
     const categoriesContainer = document.getElementById("categories-container");
 
@@ -46,13 +45,12 @@ const displayNews = (data, name) => {
       icon: "error",
       title: "No Data Found",
     });
-    dataCount.innerHTML = `
-    <h3 class="text-center"> <h3 class="text-center">There is no data available now</h3></h3>
-    `;
+    dataCount.classList.add("d-none");
     newsContainer.innerHTML = "";
-
+    toggleLoader(false);
     return;
   } else {
+    dataCount.classList.remove("d-none");
     dataCount.innerHTML = `
     <h3 class="text-center">
           <span class="text-info">${name}</span> contain <span class="text-info">${data.length}</span> items
@@ -226,5 +224,5 @@ const toggleLoader = (isLoading) => {
     document.getElementById("loader-spinner").classList.add("d-none");
   }
 };
-
+loadNews("1", "Breaking News");
 displayCategories();
