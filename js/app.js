@@ -1,3 +1,4 @@
+// Load Categories
 const loadCategories = async () => {
   try {
     const res = await fetch(
@@ -9,6 +10,8 @@ const loadCategories = async () => {
     console.log(error);
   }
 };
+
+// Display All Categories
 const displayCategories = async () => {
   const allCategories = await loadCategories();
   allCategories.forEach((cat) => {
@@ -22,6 +25,7 @@ const displayCategories = async () => {
   });
 };
 
+// Load News By Category Id
 const loadNews = async (id, name) => {
   toggleLoader(true);
   try {
@@ -35,6 +39,7 @@ const loadNews = async (id, name) => {
   }
 };
 
+// Display Category Based  News
 const displayNews = (news, name) => {
   const sortedByView = news.sort((a, b) => b.total_view - a.total_view);
   const dataCount = document.getElementById("data-count");
@@ -143,6 +148,7 @@ const displayNews = (news, name) => {
   });
 };
 
+// Load Modal Details
 const loadDetails = async (id) => {
   try {
     const res = await fetch(
@@ -155,6 +161,7 @@ const loadDetails = async (id) => {
   }
 };
 
+// Display Modal Details by specific id
 const displayDetails = (details) => {
   const modalTitle = document.getElementById("exampleModalLabel");
   modalTitle.innerText = details.title;
@@ -214,6 +221,7 @@ const displayDetails = (details) => {
   `;
 };
 
+// Toggle Loader Spinner
 const toggleLoader = (isLoading) => {
   if (isLoading) {
     document.getElementById("loader-spinner").classList.remove("d-none");
@@ -221,5 +229,22 @@ const toggleLoader = (isLoading) => {
     document.getElementById("loader-spinner").classList.add("d-none");
   }
 };
+
+// Toggle Blogs & Home
+const blogSection = document.getElementById("blogs-section");
+const categoriesSection = document.getElementById("categories-section");
+const mainSection = document.getElementById("main-section");
+const displayBlogs = () => {
+  blogSection.classList.remove("d-none");
+  categoriesSection.classList.add("d-none");
+  mainSection.classList.add("d-none");
+};
+
+const backToHome = () => {
+  blogSection.classList.add("d-none");
+  categoriesSection.classList.remove("d-none");
+  mainSection.classList.remove("d-none");
+};
+
 loadNews("1", "Breaking News");
 displayCategories();

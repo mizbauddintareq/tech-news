@@ -16,6 +16,11 @@ ul li {
   cursor: pointer;
 }
 
+.active-link {
+  color: #5d5fef;
+  text-decoration: underline;
+}
+
 /* Button */
 .btn-1 {
   background-color: #5d5fef;
