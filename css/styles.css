@@ -1,8 +1,10 @@
-/* Utilities Css Starts*/
+/* Utilities */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 body {
   font-family: "Roboto", sans-serif !important;
+  background-color: #f6f6f7 !important;
 }
+/* menu */
 .logo h1 span {
   color: white;
   background-color: #5d5fef;
@@ -10,15 +12,29 @@ body {
 .menu ul li a {
   font-weight: 400;
 }
-/* .card-shadow {
+ul li {
+  cursor: pointer;
+}
+
+/* Button */
+.btn-1 {
+  background-color: #5d5fef;
+  color: white;
+}
+.btn-2 {
+  border: 1px solid #5d5fef;
+  color: #5d5fef;
+}
+
+/* card */
+.card-shadow {
   box-shadow: 5px 5px 10px #a9a9aa77, inset -5px -5px 10px #ffffff7e;
-  background: #f4fafd;
+  background-color: white;
   border-radius: 15px;
-} */
-/* Utilities Css Ends*/
+}
 
 /* Loader Css */
-/* From uiverse.io by @Akshdeep74644 */
+
 .loader {
   position: relative;
 }
