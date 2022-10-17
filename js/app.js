@@ -23,6 +23,7 @@ const displayCategories = async () => {
 };
 
 const loadNews = async (id, name) => {
+  toggleLoader(true);
   try {
     const res = await fetch(
       `https://openapi.programming-hero.com/api/news/category/0${id}`
@@ -35,10 +36,10 @@ const loadNews = async (id, name) => {
 };
 
 const displayNews = (news, name) => {
-  console.log(news);
   const sortedByView = news.sort((a, b) => b.total_view - a.total_view);
   const dataCount = document.getElementById("data-count");
   const newsContainer = document.getElementById("news-container");
+  newsContainer.innerHTML = "";
   if (news.length === 0) {
     Swal.fire({
       icon: "error",
@@ -138,6 +139,7 @@ const displayNews = (news, name) => {
           </div>
     `;
     newsContainer.appendChild(div);
+    toggleLoader(false);
   });
 };
 
